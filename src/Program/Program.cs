@@ -7,14 +7,24 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Node n1 = new Node(1);
-            Node n2 = new Node(2);
-            Node n3 = new Node(3);
-            Node n4 = new Node(4);
-            Node n5 = new Node(5);
-            Node n6 = new Node(6);
-            Node n7 = new Node(7);
+            // Crear instancias de Persona
+            Person p1 = new Person("Carlos", 70);
+            Person p2 = new Person("Ana", 68);
+            Person p3 = new Person("Luis", 40);
+            Person p4 = new Person("María", 38);
+            Person p5 = new Person("Jorge", 18);
+            Person p6 = new Person("Lucía", 15);
+            Person p7 = new Person("Fernando", 10);
 
+            // Crear nodos para cada Persona
+            Node<Person> n1 = new Node<Person>(p1);
+            Node<Person> n2 = new Node<Person>(p2);
+            Node<Person> n3 = new Node<Person>(p3);
+            Node<Person> n4 = new Node<Person>(p4);
+            Node<Person> n5 = new Node<Person>(p5);
+            Node<Person> n6 = new Node<Person>(p6);
+            Node<Person> n7 = new Node<Person>(p7);
+            // Establecer relaciones en el árbol genealógico
             n1.AddChildren(n2);
             n1.AddChildren(n3);
 
@@ -24,10 +34,14 @@ namespace Program
             n3.AddChildren(n6);
             n3.AddChildren(n7);
 
-            // visitar el árbol aquí
-            SumVisitor visitor = new SumVisitor();
-            n1.Accept(visitor);
-            Console.WriteLine(visitor.Sum);
+            // Visita el árbol aquí
+            PersonVisitor personVisitor = new PersonVisitor();
+            n1.Accept(personVisitor);
+            // Usa el visitador para calcular la suma de las edades
+            SumVisitorEdad sumaedades = new SumVisitorEdad();
+            n1.Accept(sumaedades);
+
+            Console.WriteLine("La suma de las edades de la familia es: " + sumaedades.TotalEdades);
         }
     }
 }
