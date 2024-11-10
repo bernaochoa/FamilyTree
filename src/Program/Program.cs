@@ -42,6 +42,15 @@ namespace Program
             n1.Accept(sumaedades);
 
             Console.WriteLine("La suma de las edades de la familia es: " + sumaedades.TotalEdades);
+            //Visitador para encontrar
+            GurigrandeVisitor oldestChildVisitor = new GurigrandeVisitor();
+            n1.Accept(oldestChildVisitor);
+            Console.WriteLine("La edad del hijo más grande es: " + oldestChildVisitor.Gurigrande);
+
+            // Visitador para encontrar el nombre más largo
+            NombrelargoVisitor longestNameVisitor = new NombrelargoVisitor();
+            n1.Accept(longestNameVisitor);
+            Console.WriteLine("El nombre más largo es: " + longestNameVisitor.Nombrelargo);
         }
     }
 }
